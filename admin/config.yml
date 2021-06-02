@@ -1,0 +1,107 @@
+backend:
+  name: git-gateway
+  accept_roles: #optional - accepts all users if left out
+    - admin
+media_folder: src/images
+public_folder: /images
+
+collections:
+  - name: "site" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Site Pages" # Used in the UI, ie.: "New Post"
+    files:
+      - label: "Home"
+        name: "home"
+        file: "src/index.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string", hidden: true}
+          - {label: "Service 1 Title", name: "service1_title", widget: "string"}
+          - {label: "Service 1 Text", name: "service1_text", widget: "markdown"}
+          - {label: "Service 2 Title", name: "service2_text", widget: "string"}
+          - {label: "Service 2 Text", name: "service2_title", widget: "markdown"}
+          - {label: "Service 3 Title", name: "service3_title", widget: "string"}
+          - {label: "Service 3 Text", name: "service3_text", widget: "markdown"}
+          - {label: "Callout 1 Title", name: "callout1_title", widget: "string"}
+          - {label: "Callout 1 Text", name: "callout1_text", widget: "markdown"}
+          - {label: "Callout 2 Title", name: "callout2_text", widget: "string"}
+          - {label: "Callout 2 Text", name: "callout2_title", widget: "markdown"}
+          - {label: "Callout 3 Title", name: "callout3_title", widget: "string"}
+          - {label: "Callout 3 Text", name: "callout3_text", widget: "markdown"}
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - {label: "Quote", name: "quote", widget: "markdown"}
+              - {label: "Author", name: "author", widget: "string"}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "page"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "About ECC"
+        name: "about-ecc"
+        file: "src/about-ecc.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Banner", name: "banner", widget: "image", required: false}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "page"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Coaching"
+        name: "contact"
+        file: "src/coaching.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Banner", name: "banner", widget: "image", required: false}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "page"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Resumes"
+        name: "resumes"
+        file: "src/resumes.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Banner", name: "banner", widget: "image", required: false}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "page"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Speaking"
+        name: "speaking"
+        file: "src/speaking.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Banner", name: "banner", widget: "image", required: false}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "page"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Webinars"
+        name: "webinars"
+        file: "src/webinar.md"
+        delete: false
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Banner", name: "banner", widget: "image", required: false}
+          - {label: "Layout", name: "layout_type", widget: "hidden", default: "webinar"}
+          - {label: "Body", name: "body", widget: "markdown", required: false}
+          - label: "Webinars"
+            name: webinars
+            widget: list
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro Video (YouTube)", name: "video", widget: "string", required: false}
+              - {label: "Start Date/Time", name: "startDate", widget: "datetime"}
+              - {label: "End Date/Time", name: "endDate", widget: "datetime", required: false}
+              - {label: "Timezone", name: "tz", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
+  - name: "posts" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Posts" # Used in the UI, ie.: "New Post"
+    folder: "src/posts"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    create: true
+    delete: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "date"}
+      - {label: "Categories", name: "categories", widget: "select", multiple: true, options: ["Career Decisions", "Resumes", "Interviewing", "Job Search", "Networking", "LinkedIn", "Career Management", "Leadership", "Professional Dress & Etiquette", "Life Coaching", "Other"]}
+      - {label: "Image", name: "image", widget: "image", default: "/images/defaultpost.jpg", required: true}
+      - {label: "Layout", name: "layout_type", widget: "hidden", default: "post"}
+      - {label: "Summary", name: "description", widget: "string"}
+      - {label: "Podcast", name: "podcast", widget: "string", required: false }
+      - {label: "Body", name: "body", widget: "markdown"}
